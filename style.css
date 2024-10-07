@@ -54,11 +54,37 @@ ul{
     margin-left: 8em;
     margin-right: 8em;
 }
-#navbar{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+
+.navbar {
+    width: 80%; /* A navbar szélessége */
+
 }
-#navbarLi{
-    display: inline;
+
+.navbar ul {
+    list-style-type: none;
+    text-align: left; /* Balra igazítja a listát */
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar ul li:last-child {
+    margin-right: 0;
+}
+
+.navbar ul li a {
+    color: black; /* A szöveg színe fekete */
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.navbar ul li a:hover {
+    color: rgb(29, 126, 210); /* Színváltás hover effekt esetén */
+}
+.h1p{
+    padding-left: 50px;
+    padding-right: 50px;
 }
