@@ -38,6 +38,7 @@ h3{
     margin-left: 6em;
    
 }
+#H2h3{margin-left:none;}
 h4{
     margin-left: 6em;
    
@@ -60,6 +61,7 @@ ol li{
 }
 
 .tartalom{
+    
     text-align: center;
 }
 
@@ -110,3 +112,5 @@ ol li{
     margin-right: auto;
     width: 80%;
 }
+
+    
