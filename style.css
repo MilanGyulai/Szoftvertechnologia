@@ -112,5 +112,7 @@ ol li{
     margin-right: auto;
     width: 80%;
 }
-
+#useCase{
+   vertical-align: middle;
+}
     
