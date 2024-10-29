@@ -130,7 +130,12 @@
     <p id="tartalom1">Más betanulási módszer nem nagyon van, igazából a játékot a játékosnak szánkjuk illetve, hogy ismerje azt meg és élvezhetően tanuljon bele, így eleinte a játék nem annyira nehéz, de erre is megoldást szolgál a nehézség választás, hogy mindenki megtalálja a neki megfelelő kihívást. A korábbi játékokhoz képest a program igazából csak kinézetben lesz más mint a vetélytársai nem is szeretnénk ezt túl bonyolítani, mert az csak fejfájást okozna számunkra és a játékosoknak, akik szeretnének kikapcsolódni szabadidejükben, így a legegyszerűbb menürendszert, hoznánk el a játékba és ami lényeges, továbbá a személyre szabható billentyűzet és kontroller kiosztás is segíthet az előre haladásban.</p>
 
     <h2>5. Megbízhatóság</h2>
-
+    <h3>Korlátozott használhatóság</h3>
+    <p id="tartalom1">A játék korlátoltan használható lesz ha nincsen elérése az internet felé vagyis offline is tud működni továbbra is és, amikor újra online lesz és a szinkronizáció be van kapcsolva, akkor frissíteni fogja az előrehaladásunkat online is. Ez igaz abban az esetben is, amikor rendszer karbantartás van a kiszolgálón tehát a szerveren.</p>
+    <h3>MTBF (Mean Time Between Failures)</h3>
+    <p id="tartalom1">A hibák között eltelt idő, akkor jó ha minnél hosszabb ez az idő próbálunk arra törekedni, hogy a kód rendesen működjön és hibamentesen, ha pedig hiba lépne fel a rendszerben tegyük fel, hogy megakad a töltés legyen arra megoldás és esetleg újra kezdje a betöltést és írja ki hibaüzenetben vagy kezelje azt olyan formában, hogy az nyomonkövethető legyen.</p>
+    <h3>MTTR (Mean Time To Repair)</h3>
+    <p id="tartalom1">Az előző pontban már egy kicsit kitértem a hibajavításra, de ha kell emberi beavatkozás, akkor megkeresésre javítanánk a hibát tudva róla és erre egy új megoldást keresve vagy javítva a kódón kiküszöbölnénk ezt ha van rá lehetőség.</p>
 
 
     <h2>6. Teljesítmény</h2>
@@ -192,14 +197,49 @@
 
     <h2>9. On-line dokumentáció és Help rendszer</h2>
 
+    <h3>9.1 Online dokumentáció</h3>
+    <p id="tartalom1">Elérhetőség: Az online dokumentációnak könnyen elérhetőnek kell lennie a játék kezdőképernyőjéről, a beállítások menüből és a főmenüből is, hogy a játékos bármikor hozzáférhessen a fontos információkhoz.
+      Tartalom: A dokumentációnak tartalmaznia kell a játék alapvető irányítási útmutatóját, részletes leírást a fő játékelemekről (karakterek, tárgyak, képességek, pályák) és a gyakori problémák megoldásának módját.
+      Frissíthetőség: A dokumentációt rendszeresen frissíteni kell minden jelentős frissítés után, hogy tükrözze az új funkciókat, változásokat és a játék egyéb fontos információit.</p>
+
+      <h3>9.2 Help rendszer</h3>
+      <p id="tartalom1">Interaktív súgórendszer: A játék rendelkezzen kontextusérzékeny súgórendszerrel, amely a játékos aktuális helyzetéhez igazodva ajánl útmutatásokat (például az első dungeon felfedezésekor vagy egy új képesség feloldásakor).
+      Gyakran Ismételt Kérdések (GYIK): A gyakori kérdéseket és válaszokat tartalmazó menüpont biztosítja, hogy a játékosok gyorsan megtalálják a megoldásokat a gyakran előforduló kérdésekre vagy problémákra.</p>
+
+      <h3>9.3 Oktató mód (Tutorial Mode)</h3>
+      <p id="tartalom1">Oktató szekvencia: A játék egy interaktív oktató szekvenciát kínál az új játékosok számára, amely fokozatosan vezeti be őket az alapvető játékelemekbe és irányítási sémákba.
+        Újrakezdési lehetőség: A játékos bármikor újrakezdheti az oktató módot a beállítások menüben, hogy felfrissítse a játékmenethez kapcsolódó ismereteit./p>
+
+        <h3>9.4 Online támogatási felület</h3>
+        <p id="tartalom1">Kapcsolatfelvételi lehetőségek: Az online támogatás keretében a játékosoknak lehetőségük van közvetlen kapcsolatfelvételre a fejlesztőkkel egy dedikált weboldalon, ahol visszajelzéseket, hibajelentéseket küldhetnek be.
+          Közösségi fórum vagy Q&A felület: A játékhoz egy közösségi fórum vagy kérdések és válaszok felület is elérhető, ahol a játékosok megoszthatják tapasztalataikat és segítséget nyújthatnak egymásnak.</p>
 
     <h2>10. Felhasznált kész komponensek</h2>
+    <p id="tartalom1">A játék fejlesztése során több harmadik féltől származó komponenst is integrálunk, amelyek segítik a hatékony munkát és a minőségi megvalósítást. Az alábbiakban bemutatjuk ezeket a komponenseket, a beszerzés részleteit, valamint a licencfeltételeiket.</p>
+    <h3>10.1 Grafikai könyvtár: libGDX</h3>
+    <p id="tartalom1">Az LWJGL (Lightweight Java Game Library) egy népszerű grafikai könyvtár, amely Java-alapú játékok és multimédiás alkalmazások fejlesztésére szolgál. Az LWJGL lehetővé teszi, hogy a Java fejlesztők közvetlen hozzáférést kapjanak olyan alacsony szintű API-khoz, mint az OpenGL (grafika), OpenAL (audio) és OpenCL (párhuzamos számítás). Ezek a technológiák kifejezetten játékok és más interaktív, grafikai teljesítményre összpontosító alkalmazások készítéséhez szükségesek.</p>
+    <h3>10.2 Hangkezelő könyvtár: OpenAL</h3>
+    <p id="tartalom1">A hangkezelésért az OpenAL felel, amely LGPL licenc alatt érhető el. Az OpenAL ingyenesen használható, de a licencfeltételek betartását előírja. A könyvtár biztosítja a stabil és platformfüggetlen hangkezelést.</p>
+    <h3>10.4 Adatkezelő könyvtár: Gson vagy org.json</h3>
+    <p id="tartalom1">A JSON formátumú adatok kezelésére a Gson vagy org.json könyvtárakat használjuk. Mindkettő ingyenes és nyílt forráskódú, a Gson Apache 2.0, míg az org.json Public Domain licenc alatt áll. Ezek a könyvtárak megkönnyítik az adatok rugalmas kezelését.</p>
+    <h3>10.5 Online mentési funkciók</h3>
+    <p id="tartalom1">Online mentési funkciókhoz egy külső szolgáltatás használatát tervezzük, amely biztonságos adatmentést tesz lehetővé. A szolgáltatás kiválasztásakor figyelembe vesszük az EU adatvédelmi szabályait és a költségeket.</p>
 
 
     <h2>11. Interfészek</h2>
-    <h3>11.1. Felhasználói interfészek</h3>
+
+          <h3>11.1 Felhasználói interfészek</h3>
+          <p id="tartalom1">A felhasználói interfész megtervezésekor a következő követelményeket vesszük figyelembe:
+  Szabványok: A Material Design és az Apple Human Interface Guidelines figyelembevételével, a következetes és intuitív élmény érdekében.
+  Felhasználói csoportok: A felületnek egyszerűnek kell lennie a kezdők számára, míg a tapasztalt játékosok testreszabási lehetőségeket kapnak.            
+  UI elemek: Fontos elemek közé tartozik a fő menü, inventory, karakterlap és küldetési napló, amelyek világosan navigálhatók és vizuálisan rendezettek.</p>
+
 
     <h3>11.2. Hardware interfészek</h3>
+
+    <p id="tartalom1">A játék nem igényel speciális hardvert, de a következő követelmények érvényesek:
+  Billentyűzet és egér: Hagyományos vezérlés, gyors és pontos irányítással, testreszabási lehetőséggel.
+  Játékvezérlő kompatibilitás: Támogatja a népszerű játékkonzolok vezérlőit, lehetőséget adva a felhasználóknak a számukra legjobban megfelelő irányításra.</p>
 
     <h3>11.3. Software interfészek</h3>
     <p id="tartalom1">A játék egy gui alapú interfészet valósít meg ami a fenti use-case ábrán látható ez a könnyebb kezelhetőséget biztosítja a játékosnak. Ezen kívül a játék irányító eszközök interfészét és audió interfészét valósítja meg. A játék mögött pedig egy sql kezelő interfész van, amely a játék adatbázisát kezeli, kérdez le,  illetve frissíti ha arra van szükség.</p>
@@ -210,7 +250,10 @@
 
     <h2>12. Alkalmazott szabványok</h2>
     <h3>12.1. Kötelezően alkalmazandó szabványok</h3>
+    <p id="tartalom1">GDPR: A felhasználói adatok védelme érdekében minden személyes információt az EU adatvédelmi rendeletének megfelelően kezelünk, biztosítva, hogy a felhasználók adatai biztonságban legyenek.
+    KORHATÁR: A játék minimum 12 éves korhatár-besorolású, amely megfelel a helyi törvényi előírásoknak, így a szülői felügyelet biztosítása mellett is játszható.</p>
     <h3>12.2. Választás alapján alkalmazott szabványok</h3>
+    <p id="tartalom1">Agilis fejlesztési módszertanok: A fejlesztési folyamat során az agilis módszerek, mint például a Scrum vagy Kanban alkalmazása, lehetővé teszi a rugalmas és hatékony munkafolyamatokat, alkalmazkodva a változó követelményekhez és visszajelzésekhez.</p>
     
 
     
