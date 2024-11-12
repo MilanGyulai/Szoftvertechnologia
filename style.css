@@ -71,6 +71,12 @@ ol li{
     margin-right: 6em;
 }
 
+#tartalom2{
+    content:relative;
+    margin-left: 250px;
+    margin-right: 250px;
+    text-align: justify;
+}
 .navbar {
     width: 80%; 
 
