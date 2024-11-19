@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../index.html">Főoldal</a></li>
+        </ul>
+    </nav>
+    <h2>1. Bevezetés</h2>
+    <p id="tartalom1">Az analízis modell célja, hogy strukturált és részletes áttekintést nyújtson a játék rendszeréről, a komponensek közötti kapcsolatokról, valamint a játék mechanikáinak működéséről. Ez a modell segíti a játékfejlesztést, biztosítva, hogy minden funkció logikusan illeszkedjen a játék világába, miközben átláthatóvá teszi a komplex rendszereket. A modell a játék alapvető elemeire összpontosít, beleértve a karakterfejlesztést, az interakciókat, a harci mechanikát, a küldetésrendszert, valamint a világot és annak dinamikus elemeit. A cél az, hogy a játékos élménye következetes, izgalmas és jól skálázható legyen, miközben a fejlesztők számára átlátható keretrendszert biztosít.</p>
+    <h2>2. Kezdeti osztálydiagram</h2>
+    <img src="../Képek/KezdetiOsztalyDiagram.drawio.png" alt="KezdetiOsztálydiagram" width="600" height="350" class="center1"> 
+    <p id="tartalom1">A Kezdeti oszálydiagram még bővülni fog egy Pet osztállyal és egy Buildinggel is és Map osztállyal.</p>
+
+    <h3>2.1 Osztálydiagram</h3>
+    <h3>2.2 Osztályok felsorolása</h3>
+    <img src="../Képek/OsztalyDiagram.drawio.png" alt="OsztalyDiagram" width="" height="" class="center2">
+    <ul>
+        <li>Inventory:</li>
+            <li>Attribútumok: capacity (tárolási kapacitás), items (a játékosnál lévő tárgyak listája), quickAccessSlots (gyors elérési helyek)</li>
+        <li>addItem(item): Tárgy hozzáadása</li>
+        <li>removeItem(item): Tárgy eltávolítása</li>
+        <li>sortItems(): Tárgyak rendezése</li>
+    </ul>
+    <ul>
+        <li>Quest:</li>
+            <li>Attribútumok: name (küldetés neve), description, objective (küldetés célja), reward (jutalom)</li>
+        <li>startQuest():  Küldetés indítása</li>
+        <li>completeQuest(): Küldetés teljesítése és jutalom megadása</li>
+    </ul>
+    <ul>
+        <li>Crafting:</li>
+        <li>Attribútumok: recipeList (elérhető receptek listája), requiredMaterials (alapanyagok listája)</li>
+        <li>createItem(recipe): Tárgy létrehozása a recept alapjáns</li>
+        <li>checkMaterials(): Ellenőrzi, hogy megvan-e minden szükséges alapanyag</li>
+    </ul>
+    <ul>
+        <li>SkillTree:</li>
+        <li>Attribútumok: skills (megtanulható képességek listája)</li>
+        <li>unlockSkill(skill): Új képesség feloldása</li>
+        <li>applySkill(skill): Képesség alkalmazása a játékos statisztikáira</li>
+    </ul>
+    <ul>
+        <li>Environment:</li>
+        <li>Attribútumok: timeOfDay (napszak), weather (időjárási viszonyok, pl. eső, napsütés, éjszaka)</li>
+        <li>updateWeather(): Véletlenszerű időjárási körülmények beállítása</li>
+        <li>changeTimeOfDay(): Napszak váltása</li>
+    </ul>
+    <ul>
+        <li>SaveSlot:</li>
+        <li>Attribútumok: saveTime (mentés ideje), playerState (játékos állapota), levelProgress (szint előrehaladás)</li>
+        <li>saveGame(slot): Mentés az adott slotba</li>
+        <li>loadGame(slot): Betöltés az adott slotból</li>
+    </ul>
+    <ul>
+        <li>Economy:</li>
+        <li>Attribútumok: currency (játékbeli pénznem), marketPrices (tárgyak változó árai), inventory</li>
+        <li>buy(item): Tárgy megvásárlása egy NPC-től vagy bolttól</li>
+        <li>sell(item): Tárgy eladása, amiért pénzt kap a játékos</li>
+        <li>adjustPrices(): A kereslet és kínálat alapján az árak dinamikusan változnak</li>
+        <li></li>
+    </ul>
+    <ul>
+        <li>NPC:</li>
+        <li>Attribútumok: dialogueOptions, behaviorPattern (barátságos, semleges, ellenséges)</li>
+        <li>speakToPlayer(): NPC interakció a játékossal</li>
+        <li>setBehaviorPattern(): Az NPC-k viselkedésének beállítása az aktuális környezet szerint </li>
+        <li>tradeWithPlayer(): Tárgyak cseréje a játékossal</li>
+    </ul>
+    <ul>
+        <li>PlayerInteraction:</li>
+        <li>Attribútumok: isPvPEnabled (PvP mód állapota)</li>
+        <li>attackPlayer(targetPlayer): Játékos támadása PvP módban</li>
+    </ul>
+    <ul>
+        <li>Quest: Tartalmazza a küldetés nevét, leírását, és állapotát.</li>
+        <li>Az update_status metódussal lehet frissíteni az állapotot.</li>
+        <li>QuestLog osztály: Ez kezeli az összes küldetést, lehetővé teszi az új küldetések hozzáadását, megtekintését és frissítését.</li>
+    </ul>
+    <ul>
+        <li>Név: Pet</li>
+        <li>Attribútumok:
+            name (String) - A pet neve.
+            type (String) - A pet típusa (pl. harci, gyűjtögető, mágikus).
+            level (Integer) - A pet szintje.
+            abilities (List) - A pet különleges képességei.
+            loyalty (Integer) - A pet hűségi szintje a játékoshoz.</li>
+            <li>Név: Building</li>
+            <li>
+                Attribútumok:
+                name (String) - Az épület neve.
+                type (String) - Az épület típusa (pl. lakóház, kovácsműhely, raktár).
+                materials (List) - Az épület megépítéséhez szükséges anyagok.
+                level (Integer) - Az épület szintje (fejleszthetőség).</li>
+    </ul>
+    <ul>
+        <li>Player és Inventory: A játékosnak van egy inventory-ja, amely tartalmazza a tárgyait.</li>
+        <li>Player és Skills: A játékos képességeit a Skills osztály kezeli.</li>
+        <li>Player és QuestLog: A játékos küldetései a QuestLog-ban vannak tárolva.</li>
+        <li>QuestLog és Quest: A napló több küldetést tartalmazhat.</li>
+        <li>Player és SaveSlot: A játékos adatait egy mentési állapotban tároljuk.</li>
+        <li>Market és Inventory: A piac interakcióba lép az inventory-val (pl. vásárlás során).</li>
+        <li>Game és Level: A játék koordinálja az aktuális pálya betöltését és kezelését.</li>
+        <li>Game és GameMenu: A főmenü és a játékmenet közötti váltás.</li>
+        <li>Level és Enemy: Minden szint tartalmazhat ellenségeket.</li>
+        <li>Level és Environment: A pálya környezeti elemei itt helyezkednek el.</li>
+        <li>Crafting és Inventory: A tárgyak létrehozásához szükséges anyagok az inventory-ból származnak.</li>
+        <li>NPC és Quest: Az NPC-k küldetéseket adhatnak a játékosnak.</li>
+        <li>Player és Game: A játékos a játék központi eleme.</li>
+        <li>Items és Inventory: Az inventory egyes elemeit az Items osztály írja le.</li>
+    </ul>
+ <h3>2.3. Alrendszerek</h3>
+ <p id="tartalom1">Karakterrendszer
+    Funkció:
+    A játékos és az NPC-k karaktereinek adatainak és interakcióinak kezelése.
+    
+    Fő komponensek:
+    Player: A játékos karaktere, statisztikái, képességei, felszerelései.
+    Enemy: Ellenséges karakterek különböző statisztikákkal és viselkedésmintákkal.
+    Skill Tree: Képességfák, amelyek lehetővé teszik a karakter egyedi fejlesztését.
+    Stats Management: Az életerő, erő, mágia, kitartás stb. kezelésére szolgáló alrendszer.</p>
+ <p id="tartalom1">Harci Rendszer
+    Funkció:
+    A harcok logikájának és mechanikájának irányítása.
+    
+    Fő komponensek:
+    Damage Calculation: Fizikai és mágikus sebzés kiszámítása, statisztikák figyelembevételével.
+    Enemy Behavior AI: Az ellenséges karakterek mozgása, támadása és védekezése.
+    Combat Effects: Buffok, debuffok, harci effektek (pl. „In Combat” státusz).</p>
+ <p id="tartalom1">Küldetésrendszer
+    Funkció:
+    A történetvezérelt és véletlenszerű küldetések kezelése.
+    
+    Fő komponensek:
+    Quest Log: A játékos által elvállalt és teljesített küldetések nyilvántartása.
+    NPC Interaction: A küldetések indításához és befejezéséhez szükséges interakciók.
+    Reward System: A küldetések teljesítéséért járó jutalmak kiosztása.</p>
+ <p id="tartalom1">Erőforrás- és Tárgyrendszer
+    Funkció:
+    A játékos által gyűjtött és felhasznált tárgyak, erőforrások és valuták kezelése.
+    
+    Fő komponensek:
+    Inventory: A játékos hátizsákja és gyorsmenüje.
+    Crafting System: Tárgyak készítése az összegyűjtött alapanyagokból.
+    Item Management: Különleges tárgyak, fegyverek és eszközök kezelése.
+    Market System: Kereskedelem NPC-kkel és az árak dinamikus változása.</p>
+ <p id="tartalom1">Környezet és Világ Alrendszer 
+    Funkció:
+    A játék világának felépítése, beleértve a helyszíneket, objektumokat és a dinamikus elemeket.
+    
+    Fő komponensek:
+    Level Design: A pályák elrendezése, objektumok és ellenségek elhelyezése.
+    Environment Interaction: A környezet elemeivel (pl. fák, kövek) való interakciók.
+    Dynamic Events: Véletlenszerű események, például ellenségek rajtaütése vagy időjárás változások.</p>
+ <p id="tartalom1">Játékmenü és Beállítások 
+    Funkció:
+    A főmenü és a játék közbeni menü kezelése.
+    
+    Fő komponensek:
+    Main Menu: Játék indítása, betöltése, mentés kezelése, kilépés.
+    Pause Menu: Szüneteltetés alatti funkciók, például beállítások és mentés.
+    Settings: Hang, irányítás, grafikai opciók beállítása.</p>
+ <p id="tartalom1">Mentési és Betöltési Rendszer (Save & Load System)
+    Funkció:
+    A játék adatainak mentése és későbbi visszatöltése.
+    
+    Fő komponensek:
+    Save Slots: Több mentési hely támogatása.
+    Autosave: Automatikus mentések bizonyos események után.
+    Load System: Korábbi mentések betöltése a folytatáshoz.</p>
+ <p id="tartalom1">AI Rendszer (Artificial Intelligence System)
+    Funkció:
+    Az NPC-k és ellenségek viselkedésének irányítása.
+    
+    Fő komponensek:
+    Enemy AI: Ellenségek támadási és védekezési mintáinak kezelése.
+    Neutral NPC AI: Barátságos NPC-k viselkedése és interakciók.
+    Dynamic Reactions: Az NPC-k és ellenségek reakciói a játékos cselekedeteire.</p>
+    <p id="tartalom1"> Progresszió és Játékegyensúly Rendszer (Progression & Balancing System)
+        Funkció:
+        A játék nehézségi szintjének és a karakter fejlődésének kiegyensúlyozása.
+        
+        Fő komponensek:
+        Level Scaling: Az ellenségek erejének igazítása a játékos szintjéhez.
+        Stat Progression: A karakter fejlődése és a pontok elosztásának hatásai.
+        Loot Balance: Az elérhető tárgyak ritkaságának és értékének kezelése.</p>
+
+
+
+</body>
+</html>

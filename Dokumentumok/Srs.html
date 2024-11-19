@@ -121,11 +121,161 @@
     <h2>3. A rendszer funkciói</h2>
     <h3>3.1 Első követelmények</h3>
 
-    <img src="../Képek/Use-case.png" alt="Use-case diagram" width="1000" height=auto id="useCase" >
+    <h3>Alapvető tudnivalók</h3>
+    <p id="tartalom1">A játék kezdetén a karakter pontjainak elosztása fontos döntést igényel a játékostól. Ez a lépés meghatározza, hogy milyen stratégiával indul neki a történetnek vagy a túlélésnek. A hét attribútum (életerő, erő, kitartás, mágia, mozgási sebesség, fizikai sebzés ellenállás, mágia sebzés ellenállás) egyedi módon határozza meg a karakter játékbeli képességeit, és ezek kombinációja hatással van a játékos általános tapasztalatára. A pontelosztás rendszere lehetőséget biztosít a testreszabásra, így minden játékos egyedi karaktert hozhat létre.
 
-    <p id="tartalom1">A pontok kiosztása a menüben 7 csoportra osztható ezek az életerő, erő, kitartás, mágia, mozgási sebesség, fizikai sebzés ellenállás, mágia sebzés ellenállás. Ezek mind alapvetően 1-es értékkel rendelkeznek és a játék elején mielőtt azt elkezdjük 5 pontot tudunk kiosztani pluszban. Ha az erőre rakunk, akkor a fizikai sebzésünk fog nőni százalékosan, ha mágiára rakunk, akkor a mágia sebzésünk fog megnőni és ez hatással lesz az ellenséges NPC-kre és ugyanúgy ők is rendelkezni fognak a statisztikákkal, amikkel a mi karakterünk is rendelkezik csak más értékekkel így például egy zombi több fizikai ellenállással és több életerővel fog rendelkezni mint a szellem, de a az utóbbinak nagyobb lesz a sebzése. Ha az életerőre rakunk, akkor 10-es szintig 50 életerőt fogunk kapni, ha 10 és 25 szint között vagyunk, akkor 100 életerőt kapunk az összeshez, ha 25. szint felett vagyunk, akkor pedig 200 életerőt kapunk vissza. A kitartás befolyásolja a terhelhetőséget és azt is, hogy meddig tudunk futni. A mozgási sebesség esetén nagyon nagy változást csak hosszú távob fogunk érezni, hiszen egy nagyon alacson 0,2% os változást kapunk és ez limitálva van harcok során pedig az alapvető mozgási sebességünket fogjuk használni. A karakter egy effektet fog kapni,amelyben az áll, hogy "In combat" ez az effekt alatt azt értjük, hogy visszaesik a sebességünk ez más NPC támadásokra fog életbe lépni, tehát hogyha esési sebzést kapunk, akkor ezt az effektet nem kapja meg a karakterünk. A fizikai sebzés ellenállás a fizikai sebzés fogja csökkenteni százalésosan, szóval ha egy pont van a sebzés ellenálláson, akkor 1% százalékot fog védeni a fizikai sebzésektől ez ugyanúgy igaz lesz a mágia sebzés ellenállásra 0,5% értékkel azért, mert kevesebb ilyen NPC található meg a játékban és ezzel szeretnénk a nehézséget befolyásolni valamilyen szinten.A kardok vagy egyéb támadó eszközök használata esetén egy szorzóként működnek a pontok a kardnak tegyük fel, hogy van 15-ös sebzése és attól függően az erő pontunk be fogja folyásolni azt, szóval ha van 10 pontunk az erőn akkor 5% százalékkal fogja növelni a támadásunk sebzését. Ez a mágusnál sokkal magasabb szorzót kap mert a mágusnak limitálva van a kiosztható pontjai az ellenállásra, de ezek mellett sokkal többet sebez egy mágikus pálcával,</p>
+      A statikus attribútumok, mint az életerő, egyértelműen befolyásolják a túlélési esélyeket. A játékosok számára kezdetben 50 extra életerő pont jár, de ez a bónusz dinamikusan változik, ahogy a szintlépések során a karakter fejlődik. A 10-es szint alatt 50 extra életerőt ad minden pont, viszont 10 és 25 szint között ez már 100 életerőre emelkedik, 25 felett pedig 200 életerő bónusz jár minden befektetett pont után. Ez a progresszió különösen izgalmassá teszi a magasabb szinteken való játékot, hiszen nagyobb kihívásokkal nézhetünk szembe.
+      
+      Az erő attribútum közvetlen hatással van a fizikai támadások erejére. Például egy 10 pontos erővel rendelkező karakter a kardok alapértékén túl 5%-os bónusz sebzést kap. Ez különösen fontos olyan helyzetekben, amikor nagyobb ellenállással rendelkező NPC-k ellen kell harcolni. Ezzel szemben a mágia attribútum a varázslók számára előnyös, mivel ez növeli a mágikus sebzéseket, ami létfontosságú lehet a távolsági támadások során. A mágia egyensúlyának biztosítása érdekében a játékban ritkább ellenállási értékek találhatóak, így a mágikus karakterek erősebbek lehetnek bizonyos helyzetekben.
+      
+      A játékos által kiosztható pontok menedzselése stratégiai döntéseket igényel. Ha például valaki a kitartásra helyezi a hangsúlyt, az növeli a karakter terhelhetőségét és futási sebességét, így a játékos képes hosszabb ideig tartó küzdelmeket vívni vagy gyorsan mozogni a térképen. Ezzel szemben a mozgási sebesség csak minimálisan befolyásolja a karakter általános sebességét, és harc közben a sebesség automatikusan csökken, amikor az "In combat" effektus aktívvá válik.
+      
+      A fizikai és mágia sebzés ellenállás szintén kulcsszerepet játszik a harcokban. A fizikai ellenállás minden pontja 1%-kal csökkenti a beérkező fizikai sebzést, míg a mágia ellenállás feleekkora hatékonyságot nyújt, 0,5%-kal csökkenti a mágikus támadásokat. Ez a különbség azért fontos, mert kevesebb mágikus ellenfél található a játékban, így a mágia ellenállás kevésbé szükséges, de amikor szükség van rá, akkor életmentő lehet.</p>
     
-    <p id="tartalom1">Ha belépünk a játékba, tehát kreáltunk egy karakter és elosztottuk a pontjainkat, ahogy látható a menüben úgy neki is foghatunk a játéknak a lényegi részébe. A karakterünk tud nem ellenséges mobokkal, NPC-kkel társalogni, interakcióba lépni nagyon alapvető szinten, amely azt jelenti, hogy egy párbeszéd panel jelenik meg előttünk és ott van 3 opció: az első az, hogy meg tudjuk kérdezni arról, hogy van valamilyen melója(questje) számunkra itt két dolog történhet az egyik az, amikor azt válaszolja számunkra szöveges formátumban, nem nincs számodra semmilyen munkám. A másik lehetőség az, amikor igennel válaszol és itt lehet vagy keresgélős munka itt lehet neki keresni bármilyen tárgyat és a tárgynak van egy ritkasága ezzel azt folyásoljuk be, hogy mennyit kell keresni az adott tágyból.Van az, amikor igennel felel és valamilyen szörnyet kell levadászni és annak inventory-jában tehát leltárában találhatunk egy hozzá köthető tárgyat, ez a szellemnél egy lelket jelent. A második opció a társalgás során a kereskedés nem mindegyik NPC szeretne velünk kerekedni itt is két féle opció van, amikor igen szeretne vagy sem. Ha szeretne akkor valutában tudunk gondolkodni vagy tárgyakban a tárgyaknak vannak értékei. Három fajta nem aggresszív NPC-vel találkozhatunk, a farmer, a kovács, és az mágus. A farmer számunkra táplálékot tud nyújtani, ha szeretne kereskedni, a kovács tudja fejleszteni a tárgyainkat azon belül is csak azokat, amelyek fizikai sebzést osztanak ki, vagy azokat levédik, mert a mágikus dolgokat a mágus árus tudja fejleszteni. A karakteünk interakcióba tud lépni az őt körülvevő dolgokkal a fát ki tudja ütni kézzel is de már a követ azt nem képes. a vasat mint olyat a bányászás során ki kell szedni később pedig a kőből megépített kemencében ki kell égetni, hogy valamit tudjunk vele kezdeni. Vagyis az érccel csak kereskedni tudunk az árusokkal. A map végén található fő ellenséghez úgy tudunk eljutni, ha meg vannak a kellő tárgyak az első pályán nagyon egyszerű dolgok kellenek ezek pedig nem mások mint: egy vas páncél, egy kék gomba és egy gereblye. Ezzel fogjuk megidézni az első pályához köthető főellenséget amely, egy különleges páncélt, gereblyét tartalmazhat. Ennek azért van jelentősége, mert a különleges tárgy az egyetlen olyan tárgy, amelyet a következő pályára át tudunk vinni. </p>
+    <p id="tartalom1">A játék különböző NPC-ket kínál, akikkel a játékos kapcsolatba léphet. Ezek lehetnek ellenséges, semleges vagy barátságos NPC-k. A nem ellenséges NPC-kkel történő interakció során három fő lehetőség áll rendelkezésre:
+
+      Questek felvétele: Az NPC-k felajánlhatnak különböző típusú feladatokat, mint például tárgykeresés vagy szörnyek legyőzése. A tárgykeresés során a ritkasági szint befolyásolja, hogy mennyi és milyen nehézségű tárgyat kell összegyűjteni. A szörnyek legyőzése után az ellenséges NPC leltárában található tárgyak különleges jelentőséggel bírnak, hiszen ezek kapcsolódhatnak a küldetésekhez.
+      
+      Kereskedés: Nem minden NPC hajlandó kereskedni, de akik igen, azokkal valutában vagy tárgyakkal üzletelhetünk. A kereskedési rendszer a tárgyak értékén alapul, így a játékosnak stratégiai döntéseket kell hoznia, hogy milyen tárgyakat ad el vagy vásárol.
+      
+      Társalgás: A játékos alapvető információkat gyűjthet az NPC-ktől, amelyek segítenek a történet vagy a játékmenet megértésében. Ezek a beszélgetések néha további küldetésekhez vezethetnek. </p>
+      <p id="tartalom1">A játékban minden karaktertípus különböző harci képességekkel rendelkezik:
+
+        A harcosok közelharci támadásokban erősek, és ellenállóbbak a fizikai sebzésekkel szemben.
+        A mágusok távolsági varázslatokkal rendelkeznek, amelyek nagy területi sebzést okozhatnak.
+        A tolvajok gyors mozgásra és kritikus sebzésekre specializálódtak, így ők gyorsabb harcmodort tesznek lehetővé.
+        A blokkokkal való interakció is fontos része a játéknak. A karakter képes fákat és köveket kiütni, ha megfelelő eszköz van a kezében, például egy balta vagy egy csákány. Az ércek kiégetése és további feldolgozása szükséges a crafting rendszerben, amely lehetővé teszi új tárgyak és eszközök létrehozását.</p>
+        <p id="tartalom1">Minden pálya végén egy főellenséggel találkozunk, amely a játék legnagyobb kihívását jelenti. Ezek az ellenségek nagyobb életerővel és ellenállással rendelkeznek, mint az átlagos ellenfelek, és legyőzésük után a játékos különleges tárgyat kap. Ez az egyetlen tárgy, amely a következő pályára átvihető, így stratégiai jelentősége van a harc előtti felkészülésnek és az eszközhasználatnak.</p>
+        <h3>Főellenségek és helyszínek</h3>
+        <ul>
+        
+          <li>Vaserdő 
+            Leírás: Egy sűrű, ködös erdő, ahol óriási vasfák nőnek, melyek kérge olyan kemény, hogy csak speciális fejszével vágható. Az erdőt farkasok és szellemek népesítik be.
+            Főellenség: Fémtestű Farkaskirály 
+            Képességek: Sebzést elnyelő páncél, gyors támadások.
+            Különleges Tárgy: Vaslélek Páncél – Egy könnyű, mégis rendkívül erős páncél, amely növeli a mozgási sebességet és a fizikai ellenállást.</li>
+            
+          <li>Kék Gomba-barlang 
+              Leírás: Mély, sötét barlangrendszer, ahol foszforeszkáló gombák világítanak. A levegő tele van spórákkal, melyek lassítják a karaktereket.
+              Főellenség: Gombakirály 
+              Képességek: Mérgező spórák, gyógyítja magát.
+              Különleges Tárgy: Mérgezett Pálca – Egy mágikus fegyver, amely mérgező hatású varázslatokat bocsát ki.</li>
+          <li>Vörös Kanyon 
+                Leírás: Egy széles, sziklás kanyon, ahol folyton vörös homokviharok tombolnak. A terep tele van csapdákkal és sziklaomlásokkal.
+                Főellenség: Homokszív Gólem 
+                Képességek: Homokvihart idéz, amely elvakítja a játékost.
+                Különleges Tárgy: Szívköves Amulett – Növeli az életerőt és a regeneráció sebességét.</li>
+          <li>Fagyott Tenger 
+                  Leírás: Egy végtelen, jeges terület, ahol a mozgás sebessége csökken a csúszós jég miatt. Jégszörnyek és jegesmedvék ólálkodnak.
+                  Főellenség: Jégsárkány 
+                  Képességek: Jégcsap lövedékek, területfagyasztás.
+                  Különleges Tárgy: Jégkristály Bot – Egy varázstárgy, amely minden varázslathoz jégsebzést ad.</li>
+          <li>Sötét Torony 
+            Leírás: Egy elhagyatott, kísértetjárta torony, ahol minden szinten erősebb szellemek és árnyak várnak.
+            Főellenség: Árnyúr 
+            Képességek: Látomások idézése, amelyek megtévesztik a játékost.
+            Különleges Tárgy: Árnyfegyver – Egy kard, amely kritikus támadásokhoz árnysebzést ad.</li>
+          <li>Lángoló Sivatag
+            Leírás: Egy forró, sivatagos terület, ahol időnként homokviharok csapnak le. Óriási skorpiók és lávafolyamok teszik veszélyessé a terepet.
+            Főellenség: Tűzskorpió Királynő
+            Képességek: Tüzet okádó támadások, mérgező fullánk.
+            Különleges Tárgy: Lángoló Pajzs – Csökkenti a tűzsebzést és visszaveri a közelharci támadásokat.</li>  
+          <li>Vértó Mocsár
+            Leírás: Egy sötét, nyálkás mocsár, ahol vérszínű tavak húzódnak meg, és a levegő tele van zümmögő rovarokkal.
+            Főellenség: Mocsári Leviatán
+            Képességek: Savas támadások, mocsárfolyadékba rántás.
+            Különleges Tárgy: Savpajzs – Minden támadót savas sebzéssel büntet.</li>  
+          <li>Mennydörgő Csúcs
+            Leírás: Egy magas hegy, amelyen folytonos vihar tombol. A villámok véletlenszerűen csapnak le, növelve a veszélyt.
+            Főellenség: Viharóriás
+            Képességek: Villámcsapások és földrengésszerű támadások.
+            Különleges Tárgy: Mennydörgő Kalapács – Villám alapú fizikai sebzést ad.</li>  
+          <li> Mélység Katedrálisa
+            Leírás: Egy óriási, sötét katedrális, amely tele van démoni energiával és rejtett csapdákkal. A démonok szolgái őrzik a helyet.
+            Főellenség: Alvilági Lovag
+            Képességek: Tűz- és árnyéksebzés, teleportáció.
+            Különleges Tárgy: Sötét Lovagi Lándzsa – Megnöveli a kritikus találatok esélyét és a sebzést.
+            </li>  
+          <li>Az Üresség Kapuja
+            Leírás: Egy szürreális, lebegő sziklákból álló terület, ahol a gravitáció kiszámíthatatlanul működik. A dimenziók között lebegő lények lakják.
+            Főellenség: A Semmiség Ura
+            Képességek: Térugrás, zavaró illúziók, hatalmas energiakitörések.
+            Különleges Tárgy: Üresség Köpenye – Minden típusú sebzés ellen kis százalékban véd, és növeli a mágia ellenállást.</li>
+        </ul>
+        <h3>További szörnyek</h3>
+        <p id="tartalom1"> Erdei Farkas
+          Helyszín: Vaserdő, Kék Gomba-barlang
+          Leírás: Gyors, csoportosan támadó lények, amelyek rövid időre lelassíthatják a játékost.
+          Képességek:
+          Gyors támadás.
+          Falkaszellem: Több farkas együtt erősebb sebzést okoz.</p>
+        <p id="tartalom1">Gombaszolga
+          Helyszín: Kék Gomba-barlang
+          Leírás: Kisebb, mozgó gombalények, amelyek mérgező spórákat bocsátanak ki.
+          Képességek:
+          Mérgező érintés.
+          Spórarobbanás: Halálukkor mérgező gázfelhőt hoznak létre.</p>
+        <p id="tartalom1">Kanyon Szörny
+          Helyszín: Vörös Kanyon
+          Leírás: Hatalmas, vastag bőrű szörny, amely képes sziklák mögül lesből támadni.
+          Képességek:
+          Védekező Pozíció: Csökkenti a rá mért sebzést.
+          Szikladobás: Távolsági támadás sziklával.</p>
+        <p id="tartalom1">Jégzombi
+          Helyszín: Fagyott Tenger
+          Leírás: Lassan mozgó, de nagyot sebző élőhalott, amely képes lefagyasztani az ellenfeleket.
+          Képességek:
+          Lefagyasztás: Rövid ideig mozdulatlanná teszi a karaktert.
+          Fagyos Érintés: Csökkenti az ellenfél sebességét.</p>
+        <p id="tartalom1">Árnyéklovag
+          Helyszín: Sötét Torony
+          Leírás: Közepesen gyors, páncélozott ellenség, amely képes árnyékokból előbukkanni.
+          Képességek:
+          Árnyéklépés: Gyors helyváltoztatás árnyékban.
+          Kardcsapás: Nagy sebzésű közelharci támadás.</p>
+        <p id="tartalom1">Tűzskorpió
+          Helyszín: Lángoló Sivatag
+          Leírás: Mérgező és tüzet okádó rovar, amely gyorsan képes közel kerülni az ellenfélhez.
+          Képességek:
+          Tűzroham: Sebességnövekedés rövid időre.
+          Mérgező Fullánk: Lassítja és mérgezi a karaktert.</p>
+        <p id="tartalom1">Vérmocsári Rém
+          Helyszín: Vértó Mocsár
+          Leírás: Egy lassan mozgó, amorf lény, amely savas nyomot hagy maga után.
+          Képességek:
+          Savköd: A környezetet mérgezővé teszi.
+          Életelszívás: Minden támadásával életerőt nyer vissza.</p>
+        <p id="tartalom1"> Mennydörgő Elementál
+          Helyszín: Mennydörgő Csúcs
+          Leírás: Vihar által életre keltett lény, amely villámokat szór.
+          Képességek:
+          Villámcsapás: Nagy sebzésű, területi támadás.
+          Töltés: Lassan töltődik, de egyre erősebbé válik.</p>
+        <p id="tartalom1">Démoni Harcos
+          Helyszín: Mélység Katedrálisa
+          Leírás: Egy gyors és halálos ellenség, amely egyszerre képes közelharcra és mágiára.
+          Képességek:
+          Tűzlabda: Távolsági mágikus támadás.
+          Szívós Harcos: Nagy ellenállás a fizikai támadásokkal szemben.
+          </p>
+        <p id="tartalom1"> Dimenziószörny
+          Helyszín: Az Üresség Kapuja
+          Leírás: Egy szürreális lény, amely a tér-idő szövetét használja a támadásokhoz.
+          Képességek:
+          Időlassítás: Lassítja az ellenfél mozgását és támadásait.
+          Gravitációs Hullám: Nagy területi sebzés.</p>
+        <p id="tartalom1">Kísérteties Kalandor
+          Helyszín: Több pályán, elsősorban Sötét Torony és Kék Gomba-barlang.
+          Leírás: Egy olyan NPC, amely valaha kalandor volt, de a pálya átkai miatt ellenséggé vált.
+          Képességek:
+          Eltűnés: Rövid időre láthatatlanná válik.
+          Léleklopás: A karakter varázspontjait csökkenti.</p>
+        <p id="tartalom1">Harci Gép
+          Helyszín: Mennydörgő Csúcs és Vaserdő.
+          Leírás: Ősi gépek, amelyek a világ hajdani védelmére készültek, de most minden élőt ellenségnek tekintenek.
+          Képességek:
+          Önpusztító Robbanás: Halálukkor nagy sebzést okoznak.
+          Vaspáncél: Fizikai ellenállásuk magas.</p>
 
     <h2>4. Használhatóság</h2>
     <p id="tartalom1">Betanulás szempontból a játék igényel egy kis időt, de nem annyira sokat mint az gondolnánk, hiszen ezek a mechanikák már elég megszokottak a mai videójáték iparban és nem olyan nehéz a kezelésük illetve a megszokásuk.Az alapvető koncepció inkább azt az elvet közelíti meg, hogy legyen élvezhető a játék minthogy nehéz és embertpróbáló.Kellemes időtöltésnek szánjuk a játékot.</p>

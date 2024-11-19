@@ -46,6 +46,9 @@ h4{
 
 ul{
     list-style-type: none;
+    margin-left: 6em;
+    margin-right: 6em;
+
 }
 ol li{
     margin-left: 6em;
@@ -69,6 +72,7 @@ ol li{
     content: relative;
     margin-left: 6em;
     margin-right: 6em;
+    text-align: justify;
 }
 
 #tartalom2{
@@ -125,4 +129,17 @@ ol li{
     margin-left: 8em;
     margin-top: -1em;
 }
-    
+.center1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:45%;
+    height: 45%;
+  }
+.center2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 100%;
+  }

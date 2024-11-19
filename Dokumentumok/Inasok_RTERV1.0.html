@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Rendszertervezés</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../index.html">Főoldal</a></li>
+        </ul>
+    </nav>
+    <h2>1. Bevezetés</h2>
+    <p id="tartalom1">A játék általános ismertetése és célkitűzése. Ez a szakasz összefoglalja a játékmenet fő elemeit és a technikai követelményeket, beleértve a használandó platformokat és a felhasználói bázist. Hangsúlyozza az egyszerűsített, de mély mechanikákat, és bemutatja a célcsoportot (casual és hardcore játékosok).</p>
+    <h2>2. Felhasználói felület</h2>
+    <p id="tartalom1">A játék felhasználói felületét a vizuális könnyedség és intuitív irányítás jellemzi, amely a sandbox és RPG elemek hatékony kezelését szolgálja. A felület alapvetően két fő részre tagolódik: a főmenüre és a játékbeli kezelőfelületre.</p>
+    <h3>Főmenü</h3>
+    <ul>
+        <p id="tartalom1">A főmenüben egyszerű navigációs opciók biztosítják a gyors hozzáférést az alapvető funkciókhoz:</p>
+        <li>Új játék indítása: Lehetőséget biztosít új világ létrehozására, beállítási opciók megadásával (pl. nehézségi fokozat).</li>
+        <li>Játék folytatása: Betöltési lehetőség a legutóbbi mentési ponttól vagy egy kiválasztott játékállástól.</li>
+        <li>Beállítások: Hang, grafikai beállítások, valamint kezelőfelület testreszabása (például HUD elemek elhelyezése, színek módosítása).</li>
+    </ul>
+    <h3>Játékbeli kezelőfelület (HUD)</h3>
+    <p id="tartalom1">A játékbeli HUD egyszerre biztosít rálátást a karakter állapotára és a játék világának főbb elemeire. Az RPG-szerű fejlődés miatt a karakterfejlődéshez kapcsolódó információk is megjelennek itt:</p>
+    <ul>
+        <li>Életerő és energia csíkok: A túlélés szempontjából fontos információkat jelenítenek meg, amelyek a játékos cselekvéseire reagálnak.</li>
+        <li>Tárgylista (Inventory): Az inventory egyszerűen kezelhető és átlátható, gyors hozzáférést biztosít a felvett tárgyakhoz és eszközökhöz. Lehetőség van különböző tárgyak kombinálására és használatára, amely a crafting elemeket támogatja.</li>
+        <li>Minimap: Segít a tájékozódásban és a pálya felfedezésében.</li>
+        <li>Karakter szintje és XP: Az RPG elemek révén nyomon követhető a karakter fejlődése és aktuális tapasztalati szintje, lehetőséget adva a játékosnak a további képességfejlesztésre.</li>
+        <p>A felület célja a játékos közvetlen bevonása és egyértelmű támogatása a játékélményben, függetlenül a játékos tapasztalati szintjétől. Az egyszerűen kezelhető struktúra biztosítja, hogy a casual játékosok is könnyen hozzáférjenek a fontos funkciókhoz, míg a hardcore játékosok számára mélyebb és testreszabható opciók is elérhetők.</p>
+    </ul>
+    <h2>3. Adatmodellek</h2>
+    <h3>3.1. Adatbázis kezelő kiválasztása</h3>
+    <p id="tartalom1">Az adatbázis-kezelő rendszer kiválasztásánál a játék igényeit figyelembe véve döntés született az SQLite használatáról, mivel ez egy könnyen integrálható és gyors adatbázis-kezelő, amely jól illeszkedik a 2D-s játék struktúrájához és a helyi adattárolás igényeihez. Az SQLite lehetővé teszi a karakter- és pályaállapotok, tárgylisták és fejlődési adatok perzisztens kezelését. A későbbiekben a rendszer más adatbázis-kezelőre is skálázható (pl. MySQL), ha online játéktámogatás szükséges.</p>
+    <h3>3.2. Szemantikai adatmodell</h3>
+    <img src="../Képek/SzemantikaiAdatmodell.png" alt="Szemantikai Adatmodell">
+    <h3>3.3 Relációs adatmodell</h3>
+    <img src="../Képek/RelációsAdatmodell.png" alt="RelációsAdatmodell">
+    <h3>3.4. Az adatbázis kezelővel kapcsolatot tartó osztályok</h3>
+    <p id="tartalom1">A rendszer adatbázis-kezelését a DatabaseHandler és InventoryManager osztályok biztosítják. A DatabaseHandler osztály felelős az adatbázis-kapcsolat létrehozásáért és az adatok lekérdezéséért, míg az InventoryManager a karakterhez rendelt tárgyak kezelését és mentését végzi. A karakterfejlődési adatok az adatbázisban kerülnek tárolásra, ami elősegíti a játékbeli gyors és folyamatos interakciókat.</p>
+    <h2>4. A funkcionális modell kiegészítése</h2>
+    <p id="tartalom1">A funkcionális modell kiegészítése a játék legfontosabb interakcióinak részletezését célozza. A modell különös figyelmet fordít a karakter interakcióira, a tárgyhasználatra és a crafting funkciókra. Az alábbiakban bemutatjuk a főbb adatáramlási és feldolgozási lépéseket:
+        Karakter interakciók
+        A karakter fejlődési és harci mechanizmusait kidolgozó modell leírja, hogy az egyes akciók (pl. tárgyhasználat, craftolás) milyen hatással vannak a karakter állapotára és szintjére. Minden interakció során a karakter statisztikái frissülnek, például életerő és energia csökkenése vagy növekedése attól függően, hogy a játékos milyen cselekvést választott.
+        Tárgyhasználat és crafting
+        A crafting rendszer lehetővé teszi, hogy a játékos különböző tárgyakat kombináljon, létrehozva új eszközöket vagy felszereléseket. A tárgyhasználat során a játékos inventory-ja frissül, a létrejött tárgy pedig a megfelelő statisztikákat (pl. sebzés, védelem) befolyásolja. Ez a rendszer támogatja a játékos kreatív szabadságát és stratégiai gondolkodását, amely kulcsfontosságú az RPG elemekben.
+        Alternatív feldolgozási folyamatok
+        Kivételes esetek, mint a harc közbeni tárgyhasználat vagy az inventory feltöltése harc közben, speciális feldolgozási szabályokat igényelnek. Ezeket az alternatív adatáramlási modellek segítenek hatékonyan kezelni, és biztosítják, hogy a játékmenet zökkenőmentesen illeszkedjen a sandbox és RPG elemekhez.
+        Ez a funkcionális modell biztosítja a főbb játékmenet-elemek és interakciók koherens és könnyen bővíthető alapját, támogatva a jövőbeli frissítéseket és tartalmi bővítéseket is.</p>
+    
+</body>
+</html>
