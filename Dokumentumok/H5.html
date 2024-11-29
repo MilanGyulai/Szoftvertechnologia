@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>H5</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../index.html">Főoldal</a></li>
+        </ul>
+    </nav>
+    <h2>Skeleton</h2>
+    <p id="tartalom1">Ebben a dokumentumban megtalálható lesz a játék Skeletonja, tehát az alapvető kódok a programhoz.</p>
+    <h3>Inventory osztály</h3>
+    <p id="tartalom1">
+        import java.util.ArrayList;
+        import java.util.List;
+        
+        public class Inventory {
+            private List<Item> items; 
+            private int capacity;     
+        
+            public Inventory(int capacity) {
+                this.capacity = capacity;
+                this.items = new ArrayList<>();
+            }
+        
+           
+            public boolean addItem(Item item) {
+                if (items.size() < capacity) {
+                    items.add(item);
+                    return true;
+                }
+                return false;
+            }
+        
+          
+            public boolean removeItem(Item item) {
+                return items.remove(item);
+            }
+        
+            
+            public List<Item> getItems() {
+                return items;
+            }
+        }
+        </p>
+        <h3>Quest osztály</h3>
+        <p id="tartalom1">public class Quest {
+            private String title;       
+            private String description; 
+            private boolean isCompleted; 
+            private List<Item> rewards;  
+        
+            public Quest(String title, String description, List<Item> rewards) {
+                this.title = title;
+                this.description = description;
+                this.isCompleted = false;
+                this.rewards = rewards;
+            }
+        
+           
+            public void complete() {
+                this.isCompleted = true;
+            }
+        
+         
+            public String getTitle() {
+                return title;
+            }
+        
+            public boolean isCompleted() {
+                return isCompleted;
+            }
+        
+            public List<Item> getRewards() {
+                return rewards;
+            }
+        }
+        </p>
+        <h3>Crafting osztály</h3>
+        <p id="tartalom1">
+
+            import java.util.Map;
+
+            public class Crafting {
+                private Map<String, Integer> requiredMaterials;
+                private Item craftedItem;                       
+            
+                public Crafting(Map<String, Integer> requiredMaterials, Item craftedItem) {
+                    this.requiredMaterials = requiredMaterials;
+                    this.craftedItem = craftedItem;
+                }
+            
+             
+                public boolean canCraft(Inventory inventory) {
+                    for (Map.Entry<String, Integer> material : requiredMaterials.entrySet()) {
+                        long count = inventory.getItems().stream()
+                                .filter(item -> item.getName().equals(material.getKey()))
+                                .count();
+                        if (count < material.getValue()) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            
+               
+                public Item craftItem() {
+                    return craftedItem;
+                }
+            }
+            </p>
+        <p id="tartalom1"></p>
+        <p id="tartalom1"></p>
+        <p id="tartalom1"></p>
+        <p id="tartalom1"></p>
+</body>
+</html>
