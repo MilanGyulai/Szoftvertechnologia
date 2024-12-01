@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
     <title>H5</title>
 </head>
+
 <body>
     <nav class="navbar">
         <ul>
@@ -13,110 +15,404 @@
         </ul>
     </nav>
     <h2>Skeleton</h2>
-    <p id="tartalom1">Ebben a dokumentumban megtalálható lesz a játék Skeletonja, tehát az alapvető kódok a programhoz.</p>
+    <p id="tartalom1">Ebben a dokumentumban megtalálható lesz a játék Skeletonja, tehát az alapvető kódok a programhoz.
+    </p>
     <h3>Inventory osztály</h3>
     <p id="tartalom1">
-        import java.util.ArrayList;
-        import java.util.List;
-        
-        public class Inventory {
-            private List<Item> items; 
-            private int capacity;     
-        
-            public Inventory(int capacity) {
-                this.capacity = capacity;
-                this.items = new ArrayList<>();
-            }
-        
-           
-            public boolean addItem(Item item) {
-                if (items.size() < capacity) {
-                    items.add(item);
-                    return true;
-                }
-                return false;
-            }
-        
-          
-            public boolean removeItem(Item item) {
-                return items.remove(item);
-            }
-        
-            
-            public List<Item> getItems() {
-                return items;
-            }
-        }
-        </p>
-        <h3>Quest osztály</h3>
-        <p id="tartalom1">public class Quest {
-            private String title;       
-            private String description; 
-            private boolean isCompleted; 
-            private List<Item> rewards;  
-        
-            public Quest(String title, String description, List<Item> rewards) {
-                this.title = title;
-                this.description = description;
-                this.isCompleted = false;
-                this.rewards = rewards;
-            }
-        
-           
-            public void complete() {
-                this.isCompleted = true;
-            }
-        
-         
-            public String getTitle() {
-                return title;
-            }
-        
-            public boolean isCompleted() {
-                return isCompleted;
-            }
-        
-            public List<Item> getRewards() {
-                return rewards;
-            }
-        }
-        </p>
-        <h3>Crafting osztály</h3>
-        <p id="tartalom1">
+    <pre>
+            public class Inventory {<br>
+                private List&lt;Item&gt; items;
+                private int capacity;     
+            <br>
+                public Inventory(int capacity) {<br>
+                    this.capacity = capacity;<br>
+                    this.items = new ArrayList&lt;&gt;();<br>
+                }<br>
+            <br>
+                
+                public boolean addItem(Item item) {<br>
+                    if (items.size() &lt; capacity) {<br>
+                        items.add(item);<br>
+                        return true;<br>
+                    }<br>
+                    return false; // Sikertelen, nincs hely<br>
+                }<br>
+            <br>
+                
+                public boolean removeItem(Item item) {<br>
+                    return items.remove(item);<br>
+                }<br>
+            <br>
+                
+                public List&lt;Item&gt; getItems() {<br>
+                    return items;<br>
+                }<br>
+            }<br>
+            </pre>
 
-            import java.util.Map;
+    </p>
+    <h3>Quest osztály</h3>
+    <p id="tartalom1">
+    <pre>
+                public class Quest {<br>
+                    private String title;    
+                    private String description; 
+                    private boolean isCompleted;
+                    private List&lt;Item&gt; rewards;  
+                <br>
+                    public Quest(String title, String description, List&lt;Item&gt; rewards) {<br>
+                        this.title = title;<br>
+                        this.description = description;<br>
+                        this.isCompleted = false;<br>
+                        this.rewards = rewards;<br>
+                    }<br>
+                <br>
+                    
+                    public void complete() {<br>
+                        this.isCompleted = true;<br>
+                    }<br>
+                <br>
+                 
+                    public String getTitle() {<br>
+                        return title;<br>
+                    }<br>
+                <br>
+                    public boolean isCompleted() {<br>
+                        return isCompleted;<br>
+                    }<br>
+                <br>
+                    public List&lt;Item&gt; getRewards() {<br>
+                        return rewards;<br>
+                    }<br>
+                }<br>
+                </pre>
 
-            public class Crafting {
-                private Map<String, Integer> requiredMaterials;
-                private Item craftedItem;                       
-            
-                public Crafting(Map<String, Integer> requiredMaterials, Item craftedItem) {
-                    this.requiredMaterials = requiredMaterials;
-                    this.craftedItem = craftedItem;
-                }
-            
-             
-                public boolean canCraft(Inventory inventory) {
-                    for (Map.Entry<String, Integer> material : requiredMaterials.entrySet()) {
-                        long count = inventory.getItems().stream()
-                                .filter(item -> item.getName().equals(material.getKey()))
-                                .count();
-                        if (count < material.getValue()) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-            
-               
-                public Item craftItem() {
-                    return craftedItem;
-                }
-            }
+    </p>
+    <h3>Crafting osztály</h3>
+    <p id="tartalom1">
+    <pre>
+                public class Crafting {<br>
+                    private Map&lt;String, Integer&gt; requiredMaterials; 
+                    private Item craftedItem;                      
+                <br>
+                    public Crafting(Map&lt;String, Integer&gt; requiredMaterials, Item craftedItem) {<br>
+                        this.requiredMaterials = requiredMaterials;<br>
+                        this.craftedItem = craftedItem;<br>
+                    }<br>
+                <br>
+                    
+                    public boolean canCraft(Inventory inventory) {<br>
+                        for (Map.Entry&lt;String, Integer&gt; material : requiredMaterials.entrySet()) {<br>
+                            long count = inventory.getItems().stream()<br>
+                                    .filter(item -&gt; item.getName().equals(material.getKey()))<br>
+                                    .count();<br>
+                            if (count &lt; material.getValue()) {<br>
+                                return false;<br>
+                            }<br>
+                        }<br>
+                        return true;<br>
+                    }<br>
+                <br>
+                    
+                    public Item craftItem() {<br>
+                        return craftedItem;<br>
+                    }<br>
+                }<br>
+                </pre>
+
+    </p>
+    <h3>SkillTree osztály</h3>
+    <p id="tartalom1">
+    <pre>
+                public class SkillTree {<br>
+                    private List&lt;Skill&gt; unlockedSkills;<br>
+                <br>
+                    public SkillTree() {<br>
+                        this.unlockedSkills = new ArrayList&lt;&gt;();<br>
+                    }<br>
+                <br>
+                   
+                    public void unlockSkill(Skill skill) {<br>
+                        if (!unlockedSkills.contains(skill)) {<br>
+                            unlockedSkills.add(skill);<br>
+                        }<br>
+                    }<br>
+                <br>
+                   
+                    public List&lt;Skill&gt; getUnlockedSkills() {<br>
+                        return unlockedSkills;<br>
+                    }<br>
+                }<br>
+                </pre>
+
+    </p>
+    <h3>Environment osztály</h3>
+    <p id="tartalom1">
+    <pre>
+                public class Environment {<br>
+                    private String name;           <br>
+                    private List&lt;Enemy&gt; enemies;  <br>
+                    private List&lt;Item&gt; resources; <br>
+                <br>
+                    public Environment(String name) {<br>
+                        this.name = name;<br>
+                        this.enemies = new ArrayList&lt;&gt;();<br>
+                        this.resources = new ArrayList&lt;&gt;();<br>
+                    }<br>
+                <br>
+                    
+                    public void addEnemy(Enemy enemy) {<br>
+                        enemies.add(enemy);<br>
+                    }<br>
+                <br>
+                    
+                    public void addResource(Item resource) {<br>
+                        resources.add(resource);<br>
+                    }<br>
+                <br>
+                 
+                    public String getName() {<br>
+                        return name;<br>
+                    }<br>
+                <br>
+                    public List&lt;Enemy&gt; getEnemies() {<br>
+                        return enemies;<br>
+                    }<br>
+                <br>
+                    public List&lt;Item&gt; getResources() {<br>
+                        return resources;<br>
+                    }<br>
+                }<br>
+                </pre>
+
+    </p>
+    <h3>SaveSlot osztály</h3>
+    <p id="tartalom1">
+    <pre>
+            public class SaveSlot {<br>
+                private String playerName;<br>
+                private int level;<br>
+                private String saveTime;<br>
+            <br>
+                public SaveSlot(String playerName, int level, String saveTime) {<br>
+                    this.playerName = playerName;<br>
+                    this.level = level;<br>
+                    this.saveTime = saveTime;<br>
+                }<br>
+            <br>
+                public String getPlayerName() {<br>
+                    return playerName;<br>
+                }<br>
+            <br>
+                public int getLevel() {<br>
+                    return level;<br>
+                }<br>
+            <br>
+                public String getSaveTime() {<br>
+                    return saveTime;<br>
+                }<br>
+            }<br>
+            </pre>
+    </p>
+    <h3>Market osztály</h3>
+    <p id="tartalom1">
+    <pre>
+            public class Market {<br>
+                private List<Item> itemsForSale;<br>
+            <br>
+                public Market() {<br>
+                    itemsForSale = new ArrayList<>();<br>
+                }<br>
+            <br>
+                public void addItemForSale(Item item) {<br>
+                    itemsForSale.add(item);<br>
+                }<br>
+            <br>
+                public List<Item> getItemsForSale() {<br>
+                    return itemsForSale;<br>
+                }<br>
+            }<br>
+            </pre>
+    </p>
+    <h3>NPC osztály</h3>
+    <p id="tartalom1">
+    <pre>
+                    public class NPC {<br>
+                        private String name;<br>
+                        private String role;<br>
+                    <br>
+                        public NPC(String name, String role) {<br>
+                            this.name = name;<br>
+                            this.role = role;<br>
+                        }<br>
+                    <br>
+                        public String getName() {<br>
+                            return name;<br>
+                        }<br>
+                    <br>
+                        public String getRole() {<br>
+                            return role;<br>
+                        }<br>
+                    }<br>
+                    </pre>
+
+    </p>
+    <h3>PlayerInteraction osztály</h3>
+    <p id="tartalom1">
+    <pre>
+                    public class PlayerInteraction {<br>
+                        private Player player;<br>
+                    <br>
+                        public PlayerInteraction(Player player) {<br>
+                            this.player = player;<br>
+                        }<br>
+                    <br>
+                        public void interactWithNPC(NPC npc) {<br>
+                            // Interaction logic here<br>
+                        }<br>
+                    }<br>
+                    </pre>
+    </p>
+    <h3>Aktív és Passzív Objektumok</h3>
+    <p id="tartalom1">Az aktív objektumok azok, amelyek saját vezérlési szálat futtatnak, vagy folyamatosan működnek a
+        rendszerben. Ezek biztosítják a rendszer dinamikus működését.</p>
+    <ul>
+        <li>PlayerInteraction: Kezeli a játékos és az NPC-k, illetve a környezet közötti interakciókat.</li>
+        <li>GameController: A játék fő vezérlő mechanizmusa, amely koordinálja az alrendszerek működését.</li>
+        <li>MarketController: Az áruk és valuták kereskedését kezeli.</li>
+        <li>EnvironmentManager: Az időjárási viszonyokat, környezeti eseményeket és helyszíneket koordinálja.</li>
+        <li>QuestController: Feladatok és küldetések állapotát, valamint azok logikáját kezeli.</li>
+    </ul>
+    <h3>Passzív Objektumok:
+    </h3>
+
+    <ul>
+        <li>Inventory: A játékos és az NPC-k tárgyait tartalmazza.</li>
+        <li>SkillTree: A játékos képességeit és fejlődési útvonalát modellezi.</li>
+        <li>SaveSlot: A játék aktuális állapotának tárolása.</li>
+        <li>Quest: Egyéni küldetéseket reprezentál.</li>
+        <li>Environment: A környezeti jellemzők (pl. tereptárgyak, faanyagok, bányászható ércek) tárolására szolgál.
+        </li>
+        <li>Item: A világban található tárgyakat, felszereléseket írja le.</li>
+    </ul>
+
+    <h3>Láthatóság:</h3>
+    <p id="tartalom1">GameController: Minden objektum számára elérhető, mint központi vezérlő.
+    </p>
+    <p id="tartalom1">PlayerInteraction: Csak az NPC, Inventory, SkillTree, és Quest objektumokat látja.</p>
+    <p id="tartalom1">QuestController: Látja a Quest, PlayerInteraction, és GameController objektumokat.</p>
+    <p id="tartalom1">MarketController: Látja a Inventory, Item, és PlayerInteraction objektumokat.</p>
+    <p id="tartalom1">EnvironmentManager: Látja az Environment és a GameController objektumokat.</p>
+    <h3>Üzenetváltások:</h3>
+    <ul>
+        <li>PlayerInteraction ↔ NPC:
+            <p id="tartalom1">A játékos beszélgetést kezdeményez egy NPC-vel:</p>
+            <p id="tartalom1">Kérés: "Van valamilyen küldetésed?"
             </p>
-        <p id="tartalom1"></p>
-        <p id="tartalom1"></p>
-        <p id="tartalom1"></p>
-        <p id="tartalom1"></p>
+            <p id="tartalom1">Válasz: "Igen, gyűjts 5 követ!"</p>
+        </li>
+        <li>PlayerInteraction ↔ NPC:
+            <p id="tartalom1">QuestController -> PlayerInteraction:</p>
+            <p id="tartalom1">A játékos befejez egy küldetést:
+            </p>
+            <p id="tartalom1">Üzenet: "Küldetés teljesítve, adj át 100 XP-t a játékosnak!"</p>
+        </li>
+        <li>PlayerInteraction ↔ NPC:
+            <p id="tartalom1">MarketController -> Inventory:</p>
+            <p id="tartalom1">A játékos elad egy tárgyat:
+            </p>
+            <p id="tartalom1">Üzenet: "Távolítsd el az eladott tárgyat az inventory-ból."</p>
+        </li>
+    </ul>
+    <h3>Tesztelési terv</h3>
+    <p id="tartalom1">A játék minőségbiztosításához szükséges egy részletes, de nagyvonalú tesztelési terv, amely
+        különböző szinteken és funkciók szerint ellenőrzi a rendszer megfelelő működését. A tesztelési terv kiterjed a
+        rendszer alapvető funkcióira, interakcióira, és a különböző játékelemek helyes integrációjára.</p>
+    <h4>Tesztelési Célok
+    </h4>
+    <p id="tartalom1">A játék minden modulja (pl. Inventory, Quest, SkillTree) megfelelően működjön, és egymással
+        zökkenőmentesen kommunikáljon.
+        A felhasználói interakciók (pl. parancsok, mozgások, tárgyhasználat) pontosan és következetesen
+        végrehajtódjanak.
+        A rendszer stabilitása, teljesítménye és hibakezelése biztosított legyen.
+        A játékos tapasztalatának (UX) folyamatosan magas szintű biztosítása.
+        A játék különböző eszközökön és konfigurációk mellett is megfelelően működjön.</p>
+    <h4>Tesztelési folyamatok</h4>
+    <ul>
+        <li>
+            1. Unit Tesztelés <br>
+
+            A játék egyes moduljainak (osztályainak) különálló tesztelése.
+            Tesztelendő komponensek: PlayerInteraction: Ellenőrizni, hogy a játékos interakciói (beszélgetések,
+            parancsok) megfelelő hatással vannak az NPC-kre és a világra. Inventory: Biztosítani, hogy a tárgyak
+            hozzáadása, eltávolítása és megjelenítése helyesen működjön. QuestController: Tesztelni, hogy a küldetések
+            állapota és teljesítési logikája megfelelően frissül.
+            MarketController: Ellenőrizni az árucikkek vásárlását és eladását. SkillTree: Tesztelni a képességpontok
+            elosztását és a hatásaikat. Példa Unit Tesztekre:
+            Inventory tesztelése: Hozzáadható-e egy új tárgy?
+            Megjeleníti-e helyesen a játékos tárgyait?
+            Törölhető-e egy nem létező tárgy (hibakezelés)?
+            Quest tesztelése:
+            Aktiválódik-e egy új küldetés helyesen?
+            Teljesítési feltételek megfelelően értékelődnek ki?
+        </li>
+        <li>2. Integrációs Tesztelés
+            A különböző modulok együttműködésének vizsgálata.
+
+            Tesztelési szempontok:
+            Az Inventory szinkronizációja a MarketController-rel.
+            Az Environment változásai (pl. időjárás) hatással vannak-e az NPC-kre és a játékos mozgására.
+            A PlayerInteraction által küldött parancsok aktiválják-e a megfelelő Quest logikát.</li>
+        <li>3. Funkcionális Tesztelés
+            Az egész játék funkcionális működésének ellenőrzése.
+
+            Tesztelendő funkciók:
+            Karakter létrehozása és kezdő tulajdonságok kiosztása.
+            Játékos mozgása és interakciói (pl. tárgyak gyűjtése, küldetések elfogadása).
+            NPC-k működése (pl. párbeszédek, kereskedés).
+            Harcrendszer alapvető működése (sebzés, győzelem/veszteség kimenetelek).
+            Példa Funkcionális Tesztekre:
+            Létrehoz-e a játék egy új karaktert alapértékekkel?
+            Helyesen frissül-e az inventory, ha a játékos tárgyat szerez?
+            Aktiválódik-e egy küldetés, ha a játékos beszél egy NPC-vel?</li>
+        <li>4. Teljesítménytesztelés
+            A rendszer stabilitásának és hatékonyságának tesztelése.
+
+            Cél: Felmérni, hogy a játék hogyan kezeli a nagyobb terheléseket.
+            Tesztelendő szituációk:
+            Több mint 50 NPC mozog és interakcióba lép a környezetével.
+            Több mint 100 tárgy jelenik meg egyszerre az inventory-ban.
+            A játék hosszú távú futtatása (pl. 3-4 óra folyamatos játék).</li>
+
+    </ul>
+    <h4>Tesztelési Forgatókönyvek</h4>
+    <p id="tartalom1"> Alapszintű Forgatókönyv: Játék kezdése
+        Új karakter létrehozása.
+        Kezdő tulajdonságpontok kiosztása.
+        Kezdeti küldetés elfogadása egy NPC-től.
+        Az első szörny legyőzése és jutalom megszerzése.
+        Mentés és visszatöltés.</p>
+    <p id="tartalom1"> Speciális Forgatókönyv: Küldetéslánc tesztelése
+        Küldetések elfogadása és teljesítése sorrendben.
+        Küldetéslánc befejezése és jutalom megszerzése.
+        Ellenőrzés, hogy a küldetéslánc újraindítható-e hiba nélkül.</p>
+    <p id="tartalom1"> Szélsőséges Forgatókönyv: Hibakezelés tesztelése
+        Hibás parancsok megadása az NPC-knek.
+        Nem létező tárgyak vásárlása a piacról.
+        A játék kényszerített megszakítása (pl. bezárás a harc közben) és visszatöltés.</p>
+
+        <h4>Tesztelési Eszközök és Módszerek
+        </h4>
+        <p id="tartalom1">Automatizált Tesztek:JUnit.</p>
+        <p id="tartalom1">Manuális Tesztek:QA tesztelők által, előre meghatározott forgatókönyvek alapján.
+        </p>
+        <p id="tartalom1">Log Elemzés:A játék futása közbeni hibák és események naplózása.
+
+        </p>
+        <p id="tartalom1">Stresszteszt Szkriptek:Nagy terhelés szimulálása (sok NPC, tárgy, harci esemény).
+
+        </p>
+        <br><br>
 </body>
+
 </html>
